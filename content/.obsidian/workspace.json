@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "002 PENTESTING/HTB.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "HTB"
+              "title": "index"
             },
             "group": "36dc6f35827da705"
           }
@@ -35,13 +35,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "002 PENTESTING/HTB.md",
+                "file": "index.md",
                 "mode": "preview",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "HTB"
+              "title": "index"
             },
             "group": "36dc6f35827da705"
           }
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "002 PENTESTING/HTB.md",
+                "file": "index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -258,19 +258,24 @@
   },
   "active": "f1c1b05879f0f2c4",
   "lastOpenFiles": [
+    "ROOT.md",
+    "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
+    "002 PENTESTING/WEB PENTESTING/WEB PENTESTING.md",
+    "SERVER-SIDE ATTACKS.md",
+    "002 PENTESTING/WINDOWS PENTESTING/KERBEROS.md",
+    "002 PENTESTING/WEB PENTESTING/LFI.md",
+    "002 PENTESTING/WEB PENTESTING/WEB TECHNOLOGIES.md",
+    "002 PENTESTING/HTB.md",
     "002 PENTESTING/999 MACHINES/MACHINES.md",
     "002 PENTESTING/999 MACHINES/EASY.md",
     "002 PENTESTING/999 MACHINES/MEDIUM.md",
     "002 PENTESTING/999 MACHINES/NIBBLES.md",
-    "002 PENTESTING/WINDOWS PENTESTING/KERBEROS.md",
     "002 PENTESTING/WINDOWS PENTESTING/WINDOWS MOVEMENT.md",
     "002 PENTESTING/WINDOWS PENTESTING/WINDOWS PENTESTING.md",
     "002 PENTESTING/PENTESTING ROOT.md",
     "002 PENTESTING/PENTESTING.md",
     "002 PENTESTING/PLATFORMS.md",
-    "002 PENTESTING/HTB.md",
     "index.md",
-    "ROOT.md",
     "002 PENTESTING/PROTOCOLS AND SERVICES/PROTOCOLS AND SERVICES.md",
     "002 PENTESTING/WINDOWS PENTESTING/READGMSAPASSWORD.md",
     "999 OTHERS/DANTE/10.10.110.100.md",
@@ -280,13 +285,8 @@
     "002 PENTESTING/LINUX PENTESTING/LINUX PRIVILEGED GROUPS.md",
     "CPTS",
     "AEN/AEN ROOT.md",
-    "002 PENTESTING/TEAMVIEWER.md",
     "AEN",
     "999 OTHERS/AEN",
-    "002 PENTESTING/WEB PENTESTING/PWM.md",
-    "002 PENTESTING/WEB PENTESTING/UMBRACO CMS.md",
-    "002 PENTESTING/WEB PENTESTING/WERKZEUG.md",
-    "002 PENTESTING/WINDOWS PENTESTING/WINDOWS PREDICTABLE CREDENTIALS.md",
     "100 ATTACHMENTS/JENKINS-20260805184534052.webp",
     "999 OTHERS/DANTE",
     "100 ATTACHMENTS/WINDOWS PREDICTABLE CREDENTIALS-20260718204211568.webp",

@@ -7,7 +7,7 @@ cssclasses:
 banner: "https://images.unsplash.com/photo-1501471984908-815b996862f4?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 ---
 
-> ***A living offensive security knowledge base by [0xkholod](https://github.com/4l3xBB).***
+> ***A living offensive security knowledge base by [0xkholod](https://github.com/0xkholod).***
 
 This field manual turns research, lab work, and hands-on experience into concise, reusable notes. It is built for fast retrieval during study, assessments, and controlled security testing.
 
