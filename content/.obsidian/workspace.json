@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
+                "file": "002 PENTESTING/WEB PENTESTING/SSRF.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "WEB OFFENSIVE CHECKLIST"
+              "title": "SSRF"
             },
             "group": "812ab495f79e3517"
           }
@@ -35,13 +35,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
+                "file": "002 PENTESTING/WEB PENTESTING/SSRF.md",
                 "mode": "preview",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "WEB OFFENSIVE CHECKLIST"
+              "title": "SSRF"
             },
             "group": "812ab495f79e3517"
           }
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
+                "file": "002 PENTESTING/WEB PENTESTING/SSRF.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -258,11 +258,14 @@
   },
   "active": "9d7120c4b19936c6",
   "lastOpenFiles": [
+    "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
+    "XSLT INJECTION.md",
+    "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
+    "SSI INJECTION.md",
+    "100 ATTACHMENTS/SSI INJECTION-20260919143704038.webp",
     "002 PENTESTING/WINDOWS PENTESTING/CHECKLISTS.md",
     "SSTI.md",
-    "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
     "SSRF.md",
-    "XSLT INJECTION.md",
     "100 ATTACHMENTS/XSLT INJECTION-20260918202521191.webp",
     "100 ATTACHMENTS/XSLT INJECTION-20260918202115844.webp",
     "100 ATTACHMENTS/XSLT INJECTION-20260918200628621.webp",
@@ -270,11 +273,9 @@
     "100 ATTACHMENTS/XSLT INJECTION-20260918195711848.webp",
     "JAVASCRIPT.md",
     "100 ATTACHMENTS/XSLT INJECTION-20260918195232107.webp",
-    "SSI INJECTION.md",
     "100 ATTACHMENTS/SSI INJECTION-20260918191106331.webp",
     "100 ATTACHMENTS/SSI INJECTION-20260918191050114.webp",
     "100 ATTACHMENTS/SSI INJECTION-20260918191020069.webp",
-    "100 ATTACHMENTS/SSI INJECTION-20260918190341958.webp",
     "ROOT.md",
     "index.md",
     "002 PENTESTING/WEB PENTESTING/WEB PENTESTING.md",
@@ -292,8 +293,6 @@
     "002 PENTESTING/WINDOWS PENTESTING/WINDOWS PENTESTING.md",
     "002 PENTESTING/PENTESTING ROOT.md",
     "002 PENTESTING/PENTESTING.md",
-    "002 PENTESTING/PLATFORMS.md",
-    "002 PENTESTING/PROTOCOLS AND SERVICES/PROTOCOLS AND SERVICES.md",
     "CPTS",
     "AEN",
     "999 OTHERS/AEN",
