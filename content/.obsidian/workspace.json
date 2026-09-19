@@ -13,37 +13,37 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "WEB OFFENSIVE CHECKLIST"
             },
-            "group": "36dc6f35827da705"
+            "group": "812ab495f79e3517"
           }
         ]
       },
       {
-        "id": "d3389c28ee93c333",
+        "id": "442a610d96cbce96",
         "type": "tabs",
         "children": [
           {
-            "id": "f1c1b05879f0f2c4",
+            "id": "9d7120c4b19936c6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
                 "mode": "preview",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "WEB OFFENSIVE CHECKLIST"
             },
-            "group": "36dc6f35827da705"
+            "group": "812ab495f79e3517"
           }
         ]
       }
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.md",
+                "file": "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -256,15 +256,33 @@
       "daily-notes:Abrir la nota de hoy": false
     }
   },
-  "active": "f1c1b05879f0f2c4",
+  "active": "9d7120c4b19936c6",
   "lastOpenFiles": [
-    "ROOT.md",
+    "002 PENTESTING/WINDOWS PENTESTING/CHECKLISTS.md",
+    "SSTI.md",
     "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
+    "SSRF.md",
+    "XSLT INJECTION.md",
+    "100 ATTACHMENTS/XSLT INJECTION-20260918202521191.webp",
+    "100 ATTACHMENTS/XSLT INJECTION-20260918202115844.webp",
+    "100 ATTACHMENTS/XSLT INJECTION-20260918200628621.webp",
+    "100 ATTACHMENTS/XSLT INJECTION-20260918200118116.webp",
+    "100 ATTACHMENTS/XSLT INJECTION-20260918195711848.webp",
+    "JAVASCRIPT.md",
+    "100 ATTACHMENTS/XSLT INJECTION-20260918195232107.webp",
+    "SSI INJECTION.md",
+    "100 ATTACHMENTS/SSI INJECTION-20260918191106331.webp",
+    "100 ATTACHMENTS/SSI INJECTION-20260918191050114.webp",
+    "100 ATTACHMENTS/SSI INJECTION-20260918191020069.webp",
+    "100 ATTACHMENTS/SSI INJECTION-20260918190341958.webp",
+    "ROOT.md",
+    "index.md",
     "002 PENTESTING/WEB PENTESTING/WEB PENTESTING.md",
+    "002 PENTESTING/WEB PENTESTING/WEB TECHNOLOGIES.md",
+    "002 PENTESTING/WEB PENTESTING/FUZZING.md",
     "SERVER-SIDE ATTACKS.md",
     "002 PENTESTING/WINDOWS PENTESTING/KERBEROS.md",
     "002 PENTESTING/WEB PENTESTING/LFI.md",
-    "002 PENTESTING/WEB PENTESTING/WEB TECHNOLOGIES.md",
     "002 PENTESTING/HTB.md",
     "002 PENTESTING/999 MACHINES/MACHINES.md",
     "002 PENTESTING/999 MACHINES/EASY.md",
@@ -275,29 +293,11 @@
     "002 PENTESTING/PENTESTING ROOT.md",
     "002 PENTESTING/PENTESTING.md",
     "002 PENTESTING/PLATFORMS.md",
-    "index.md",
     "002 PENTESTING/PROTOCOLS AND SERVICES/PROTOCOLS AND SERVICES.md",
-    "002 PENTESTING/WINDOWS PENTESTING/READGMSAPASSWORD.md",
-    "999 OTHERS/DANTE/10.10.110.100.md",
-    "CPTS/ROOT.md",
-    "002 PENTESTING/WINDOWS PENTESTING/WINDOWS CREDENTIAL HUNTING.md",
-    "002 PENTESTING/WINDOWS PENTESTING/LIVING OFF THE LAND COERCION.md",
-    "002 PENTESTING/LINUX PENTESTING/LINUX PRIVILEGED GROUPS.md",
     "CPTS",
-    "AEN/AEN ROOT.md",
     "AEN",
     "999 OTHERS/AEN",
-    "100 ATTACHMENTS/JENKINS-20260805184534052.webp",
     "999 OTHERS/DANTE",
-    "100 ATTACHMENTS/WINDOWS PREDICTABLE CREDENTIALS-20260718204211568.webp",
-    "100 ATTACHMENTS/CHROME DEVTOOLS ABUSE-20260705203946636.webp",
-    "100 ATTACHMENTS/CHROME DEVTOOLS ABUSE-20260705190511384.webp",
-    "100 ATTACHMENTS/CHROME DEVTOOLS ABUSE-20260705190054157.webp",
-    "100 ATTACHMENTS/WERKZEUG-20260704210911816.webp",
-    "100 ATTACHMENTS/WERKZEUG-20260704185031313.webp",
-    "100 ATTACHMENTS/WERKZEUG-20260704175527512.webp",
-    "100 ATTACHMENTS/zsh_p10k_cmdExectime.gif",
-    "100 ATTACHMENTS/PWM-20260607155301027.webp",
     "002 PENTESTING/CHECKLISTS",
     "002 PENTESTING/899 TOOLS",
     "002 PENTESTING/LINUX PENTESTING",
