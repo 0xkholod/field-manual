@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "002 PENTESTING/WEB PENTESTING/SSRF.md",
+                "file": "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "SSRF"
+              "title": "WEB ATTACKS"
             },
             "group": "812ab495f79e3517"
           }
@@ -35,13 +35,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "002 PENTESTING/WEB PENTESTING/SSRF.md",
+                "file": "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
                 "mode": "preview",
-                "source": true,
+                "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "SSRF"
+              "title": "WEB ATTACKS"
             },
             "group": "812ab495f79e3517"
           }
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "002 PENTESTING/WEB PENTESTING/SSRF.md",
+                "file": "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -258,29 +258,32 @@
   },
   "active": "9d7120c4b19936c6",
   "lastOpenFiles": [
+    "BROKEN AUTHENTICATION.md",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919203244046.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919202728241.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919202248959.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919195406805.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919195342395.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919195226915.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919194616414.webp",
+    "002 PENTESTING/PASSWORD ATTACKS.md",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919185043321.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919184529693.webp",
+    "100 ATTACHMENTS/BROKEN AUTHENTICATION-20260919182722769.webp",
     "002 PENTESTING/WEB PENTESTING/WEB ATTACKS.md",
-    "XSLT INJECTION.md",
+    "002 PENTESTING/WEB PENTESTING/WEB PENTESTING.md",
     "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
+    "002 PENTESTING/WEB PENTESTING/FUZZING.md",
+    "002 PENTESTING/WEB PENTESTING/SSRF.md",
+    "XSLT INJECTION.md",
     "SSI INJECTION.md",
-    "100 ATTACHMENTS/SSI INJECTION-20260919143704038.webp",
     "002 PENTESTING/WINDOWS PENTESTING/CHECKLISTS.md",
     "SSTI.md",
     "SSRF.md",
-    "100 ATTACHMENTS/XSLT INJECTION-20260918202521191.webp",
-    "100 ATTACHMENTS/XSLT INJECTION-20260918202115844.webp",
-    "100 ATTACHMENTS/XSLT INJECTION-20260918200628621.webp",
-    "100 ATTACHMENTS/XSLT INJECTION-20260918200118116.webp",
-    "100 ATTACHMENTS/XSLT INJECTION-20260918195711848.webp",
     "JAVASCRIPT.md",
-    "100 ATTACHMENTS/XSLT INJECTION-20260918195232107.webp",
-    "100 ATTACHMENTS/SSI INJECTION-20260918191106331.webp",
-    "100 ATTACHMENTS/SSI INJECTION-20260918191050114.webp",
-    "100 ATTACHMENTS/SSI INJECTION-20260918191020069.webp",
     "ROOT.md",
     "index.md",
-    "002 PENTESTING/WEB PENTESTING/WEB PENTESTING.md",
     "002 PENTESTING/WEB PENTESTING/WEB TECHNOLOGIES.md",
-    "002 PENTESTING/WEB PENTESTING/FUZZING.md",
     "SERVER-SIDE ATTACKS.md",
     "002 PENTESTING/WINDOWS PENTESTING/KERBEROS.md",
     "002 PENTESTING/WEB PENTESTING/LFI.md",
@@ -290,9 +293,6 @@
     "002 PENTESTING/999 MACHINES/MEDIUM.md",
     "002 PENTESTING/999 MACHINES/NIBBLES.md",
     "002 PENTESTING/WINDOWS PENTESTING/WINDOWS MOVEMENT.md",
-    "002 PENTESTING/WINDOWS PENTESTING/WINDOWS PENTESTING.md",
-    "002 PENTESTING/PENTESTING ROOT.md",
-    "002 PENTESTING/PENTESTING.md",
     "CPTS",
     "AEN",
     "999 OTHERS/AEN",
