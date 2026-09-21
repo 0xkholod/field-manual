@@ -454,6 +454,6 @@ With this in mind, we can test it for *SQL Injection*. If we enter a simple quot
 
 Since the error is displayed in the response, it seems that we can proceed with an ***[[UNION BASED SQLI|UNION-based]]*** approach to extract sensitive information
 
-![[GRAPHQL-20260920190129902.webp]]
+![[GRAPHQL-20260920190129902.webp|450]]
 
 > ***Zoom in***
