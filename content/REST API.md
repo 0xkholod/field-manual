@@ -1061,6 +1061,3 @@ We receive the entire inventory of products
 > ***Zoom in***
 
 So, we can confirm that this endpoint is vulnerable to *SQL Injection*
-
----
-
