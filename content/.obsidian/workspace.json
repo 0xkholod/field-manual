@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GRAFANA.md",
+                "file": "002 PENTESTING/PROTOCOLS AND SERVICES/6379 - REDIS.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "GRAFANA"
+              "title": "6379 - REDIS"
             },
             "group": "213e7d1e0db7bd05"
           }
@@ -35,13 +35,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GRAFANA.md",
+                "file": "002 PENTESTING/PROTOCOLS AND SERVICES/6379 - REDIS.md",
                 "mode": "preview",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "GRAFANA"
+              "title": "6379 - REDIS"
             },
             "group": "213e7d1e0db7bd05"
           }
@@ -175,7 +175,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "GRAFANA.md",
+                "file": "002 PENTESTING/PROTOCOLS AND SERVICES/6379 - REDIS.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -258,8 +258,8 @@
   },
   "active": "5f792935d9243626",
   "lastOpenFiles": [
-    "002 PENTESTING/WEB PENTESTING/WEB TECHNOLOGIES.md",
     "GRAFANA.md",
+    "002 PENTESTING/WEB PENTESTING/WEB TECHNOLOGIES.md",
     "002 PENTESTING/LINUX PENTESTING/LINUX PRIVILEGED GROUPS.md",
     "002 PENTESTING/CHECKLISTS/WEB OFFENSIVE CHECKLIST.md",
     "002 PENTESTING/WINDOWS PENTESTING/CHECKLISTS.md",
