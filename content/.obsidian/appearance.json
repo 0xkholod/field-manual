@@ -6,5 +6,6 @@
     "files_section",
     "graph",
     "neon"
-  ]
+  ],
+  "showRibbon": true
 }
